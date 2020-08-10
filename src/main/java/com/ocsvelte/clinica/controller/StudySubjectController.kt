@@ -1,5 +1,6 @@
 package com.ocsvelte.clinica.controller
 
+import com.ocsvelte.clinica.dto.StudySubjectDto
 import com.ocsvelte.clinica.exception.ResourceNotFoundException
 import com.ocsvelte.clinica.model.*
 import com.ocsvelte.clinica.repository.StatusRepository
@@ -30,7 +31,7 @@ open class StudySubjectController @Autowired constructor(
 
     @PostMapping(value = ["/participant/subject/{subjectId}/study/{studyId}/status/{statusId}/user/{userId}"])
     fun addStudySubject(
-            @RequestBody studySubject: StudySubject?,
+            @RequestBody studySubjectDto: StudySubjectDto?,
             @PathVariable("subjectId") subjectId: Int,
             @PathVariable("studyId") studyId: Int,
             @PathVariable("statusId") statusId: Int,
@@ -49,13 +50,13 @@ open class StudySubjectController @Autowired constructor(
             ResourceNotFoundException("User Accounts $userId not found")
         }
         val studySubjects = StudySubject(
-                label = studySubject?.label!!,
+                label = studySubjectDto?.label!!,
                 secondaryLabel = "",
                 subject = subject,
                 study = study,
                 status = status,
                 ownerId = userAccount,
-                ocOid = studySubject.ocOid
+                ocOid = studySubjectDto.ocOid
         )
         return studySubjectServiceImpl.save(studySubjects)
     }
