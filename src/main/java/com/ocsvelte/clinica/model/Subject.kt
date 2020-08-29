@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import javax.persistence.*
 
 @Entity
-@Table(name = "study")
+@Table(name = "subject",schema = "s_02052020test")
 @EnableJpaRepositories
 data class Subject(
         @Id
