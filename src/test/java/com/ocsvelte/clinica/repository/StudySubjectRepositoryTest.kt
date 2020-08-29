@@ -1,6 +1,8 @@
 package com.ocsvelte.clinica.repository
 
-import com.ocsvelte.clinica.model.*
+import com.ocsvelte.clinica.model.Study
+import com.ocsvelte.clinica.model.StudySubject
+import com.ocsvelte.clinica.model.UserAccount
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,14 +16,14 @@ internal open class StudySubjectRepositoryTest {
     @Test
     fun `doing whatever i want`(){
         val studySubject = StudySubject(
-                ownerId = UserAccount(),
+                ownerId = UserAccount(2),
                 study = Study(4),
-                status = Status(),
-                subject = Subject(),
+                status = null,
+                subject = null,
                 label = "5",
                 secondaryLabel = "5",
-                userId = UserAccount(),
-                ocOid = "SS_4"
+                userId = UserAccount(2),
+                ocOid = "SS_5"
         )
         val expected= studySubjectRepository.save(studySubject)
         assertThat(studySubjectRepository.findById(1)).isNotEmpty

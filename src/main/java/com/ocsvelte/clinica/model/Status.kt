@@ -5,7 +5,7 @@ import java.io.Serializable
 import javax.persistence.*
 
 @Entity
-@Table(name = "status", uniqueConstraints = [UniqueConstraint(columnNames = arrayOf("status_id"))])
+@Table(name = "status", uniqueConstraints = [UniqueConstraint(columnNames = arrayOf("status_id"))], schema = "public")
 @EnableJpaRepositories
 data class Status(
         @Id
@@ -14,6 +14,4 @@ data class Status(
         val statusId: Int = 0,
         val name: String = "",
         val description: String = ""
-) : Serializable {
-
-}
+) : Serializable
